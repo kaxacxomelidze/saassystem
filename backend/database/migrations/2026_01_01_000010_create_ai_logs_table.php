@@ -13,8 +13,8 @@ return new class extends Migration {
             $table->foreignId('conversation_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->string('action');
-            $table->jsonb('input')->nullable();
-            $table->jsonb('output')->nullable();
+            $table->json('input')->nullable();
+            $table->json('output')->nullable();
             $table->timestamps();
             $table->index(['workspace_id', 'action']);
         });

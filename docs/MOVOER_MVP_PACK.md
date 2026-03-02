@@ -31,3 +31,16 @@ This is intentionally a **starter monorepo pack** so you can copy these files in
 - Added `ChannelController` with provider registry and generic connect/sync endpoints for: Gmail, Facebook, Instagram, WhatsApp, Telegram, Slack, and Website channels.
 - Added `SyncChannelJob` so non-Gmail channels are supported by one unified sync entrypoint while provider-specific ingestion can be implemented incrementally.
 - Added `RequireSuperAdmin` middleware and `AdminController` for super-admin-only user governance APIs under `/api/admin/*`.
+
+
+## XAMPP run guide
+
+You can run this starter on XAMPP (Apache + MySQL):
+
+- Set Laravel `.env` to MySQL (`DB_CONNECTION=mysql`, `DB_PORT=3306`, `DB_USERNAME=root`)
+- Use `QUEUE_CONNECTION=database` if you are not running Redis
+- Run `php artisan queue:table && php artisan migrate && php artisan db:seed`
+- Start workers with `php artisan queue:work` and scheduler with `php artisan schedule:work`
+
+Compatibility note:
+- Migrations in this pack already use `json` columns for MySQL/XAMPP compatibility.

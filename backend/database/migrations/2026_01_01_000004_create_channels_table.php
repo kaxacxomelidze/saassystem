@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->text('access_token')->nullable();
             $table->text('refresh_token')->nullable();
             $table->timestamp('token_expires_at')->nullable();
-            $table->jsonb('settings')->nullable();
+            $table->json('settings')->nullable();
             $table->timestamps();
             $table->index(['workspace_id', 'provider']);
         });

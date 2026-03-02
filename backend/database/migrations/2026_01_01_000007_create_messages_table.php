@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('direction')->default('in');
             $table->string('sender')->nullable();
             $table->text('body');
-            $table->jsonb('meta')->nullable();
+            $table->json('meta')->nullable();
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();
             $table->index(['workspace_id', 'conversation_id']);

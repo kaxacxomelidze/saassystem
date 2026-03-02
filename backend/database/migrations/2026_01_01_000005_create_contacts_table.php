@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->jsonb('custom_fields')->nullable();
+            $table->json('custom_fields')->nullable();
             $table->timestamps();
             $table->index(['workspace_id', 'email']);
             $table->index(['workspace_id', 'phone']);

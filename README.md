@@ -7,7 +7,9 @@ This repository now includes an **actual file-based MVP starter** (not only docs
 - AI draft endpoint
 - Gmail sync job scaffolding
 - Automation engine
-- React inbox UI starter
+- Multi-channel connector registry (Gmail, Facebook, Instagram, WhatsApp, Telegram, Slack, Website)
+- Super-admin-only API controls for users and workspace roles
+- React 3-panel inbox UI starter (login, filters, Gmail connect/sync, AI draft)
 
 ## Project layout
 
@@ -26,6 +28,8 @@ composer require laravel/sanctum stripe/stripe-php filament/filament:"^3.0"
 ```
 
 Then copy files from this repository's `backend/` into your Laravel project and run:
+
+Admin control APIs are protected with `super_admin` middleware (`/api/admin/*`) so only your super-admin account can manage users/roles globally.
 
 ```bash
 php artisan migrate

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AiController;
 use App\Http\Controllers\Api\BillingController;
+use App\Http\Controllers\Api\ChannelController;
 use App\Http\Controllers\Api\GmailController;
 use App\Http\Controllers\Api\InboxController;
 use App\Http\Controllers\Api\WorkspaceController;
@@ -46,6 +48,12 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/workspaces', [WorkspaceController::class, 'my']);
     Route::post('/workspaces', [WorkspaceController::class, 'create']);
 
+    Route::middleware('super_admin')->prefix('/admin')->group(function (): void {
+        Route::get('/users', [AdminController::class, 'users']);
+        Route::post('/users/{userId}/super-admin', [AdminController::class, 'setSuperAdmin']);
+        Route::post('/workspaces/{workspaceId}/users/{userId}/role', [AdminController::class, 'setUserRole']);
+    });
+
     Route::middleware('workspace')->group(function (): void {
         Route::get('/inbox', [InboxController::class, 'list']);
         Route::get('/inbox/{id}', [InboxController::class, 'show']);
@@ -55,6 +63,11 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::post('/inbox/{id}/status', [InboxController::class, 'setStatus']);
 
         Route::post('/ai/{conversationId}/draft', [AiController::class, 'draft']);
+
+        Route::get('/channels/providers', [ChannelController::class, 'supportedProviders']);
+        Route::get('/channels', [ChannelController::class, 'index']);
+        Route::post('/channels/connect', [ChannelController::class, 'connect']);
+        Route::post('/channels/{channelId}/sync-now', [ChannelController::class, 'syncNow']);
 
         Route::get('/gmail/auth-url', [GmailController::class, 'authUrl']);
         Route::post('/gmail/sync-now', function (Request $request) {

@@ -24,3 +24,10 @@ This repository now ships a concrete MVP starter pack as files:
 ## Notes
 
 This is intentionally a **starter monorepo pack** so you can copy these files into a fresh Laravel + Vite React setup quickly. It is much closer to “full code” than the previous docs-only response.
+
+
+## Multi-channel platform additions
+
+- Added `ChannelController` with provider registry and generic connect/sync endpoints for: Gmail, Facebook, Instagram, WhatsApp, Telegram, Slack, and Website channels.
+- Added `SyncChannelJob` so non-Gmail channels are supported by one unified sync entrypoint while provider-specific ingestion can be implemented incrementally.
+- Added `RequireSuperAdmin` middleware and `AdminController` for super-admin-only user governance APIs under `/api/admin/*`.
